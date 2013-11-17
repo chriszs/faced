@@ -6,10 +6,22 @@ faced is a light-weight library for face recognition including features such as 
 
 Face is outlined in **black**, the eyes are **red** & **green** for left and right respectively, the nose is outlined in **white** and the mouth in **blue**.
 
-## Install
+## Dependencies
+
+### OpenCV
+Make sure you have [OpenCV](http://opencv.org/downloads.html) installed on your machine.
+
+For MacOS X you can use [Homebrew](http://brew.sh)
+
+```
+$ brew tap homebrew/science
+$ brew install opencv
+```
+
+## Installation
 
 ### As a dependency to your project
-Just add `"faced": "~1.1",` to your dependencies list in `package.json`.
+Just add `"faced": "1.x",` to your dependencies list in `package.json`.
 
 ### Globally
 `npm install -g faced`
@@ -47,9 +59,9 @@ Its that simple! See the program used to [generate the above image](https://gith
 
 ## API
 
-### Faced.detect(path, function, context)
+### Faced.detect(source, function, context)
 
-Loads an image from the given `path` and executes `function` upon completion.
+Loads an image from `source` which can be a file path or a buffer and executes `function` upon completion.
 
 The callback function expects a prototype like `function (faces, image, file) { }`, where the first is an array of `Face`, the second is a `Matrix` [object from opencv](https://npmjs.org/package/opencv#readme) and the third is the path of the image.
 
