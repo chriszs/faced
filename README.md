@@ -1,4 +1,5 @@
 # faced
+[![Build Status](https://travis-ci.org/gordalina/faced.svg?branch=master)](https://travis-ci.org/gordalina/faced)
 
 faced is a light-weight library for face recognition including features such as eyes, nose and mouth. It requires opencv.
 
@@ -9,33 +10,45 @@ Face is outlined in **black**, the eyes are **red** & **green** for left and rig
 ## Dependencies
 
 ### OpenCV
-Make sure you have [OpenCV](http://opencv.org/downloads.html) installed on your machine.
+
+Make sure you have [OpenCV](http://opencv.org/downloads.html) `v2.4.x` installed on your machine.
 
 For MacOS X you can use [Homebrew](http://brew.sh)
 
 ```
 $ brew tap homebrew/science
 $ brew install opencv
+
+# If you are running macOS 10.12 (Sierra) use the following command
+# See: https://github.com/Homebrew/homebrew-science/issues/4303
+$ brew install opencv --HEAD
 ```
 
 ## Installation
 
 ### As a dependency to your project
-Just add `"faced": "1.x",` to your dependencies list in `package.json`.
+
+```
+$ npm install --save faced
+```
 
 ### Globally
-`npm install -g faced`
+```
+$ npm install -g faced
+```
 
 ## Identify your first face
 
 ```javascript
+var Faced = require('faced');
 var faced = new Faced();
+
 faced.detect('image.jpg', function (faces, image, file) {
   if (!faces) {
     return console.log("No faces found!");
   }
 
-  var face = sface[0];
+  var face = faces[0];
 
   console.log(
     "Found a face at %d,%d with dimensions %dx%d",
@@ -50,7 +63,7 @@ faced.detect('image.jpg', function (faces, image, file) {
     face.getMouth() ? "has" : "does not have",
     face.getNose() ? "has" : "does not have",
     face.getEyeLeft() ? "has" : "does not have",
-    face.getEyeRight() ? "has" : "does not have",
+    face.getEyeRight() ? "has" : "does not have"
   );
 });
 ```
